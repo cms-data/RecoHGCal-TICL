@@ -10,7 +10,7 @@
   - [PhysicsTools/TensorFlow](https://github.com/cms-sw/cmssw/tree/master/PhysicsTools/TensorFlow)
 - ONNX:
   - [Introduction](https://onnx.ai/onnx/intro/)
-  - [CMSSW interface](https://github.com/cms-sw/) (still under recontruction)
+  - [CMSSW interface](https://github.com/cms-sw/) (still under construction)
   - [PhysicsTools/ONNXRuntime](https://github.com/cms-sw/cmssw/tree/master/PhysicsTools/ONNXRuntime)
 
 ### Models
