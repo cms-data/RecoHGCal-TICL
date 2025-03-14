@@ -25,10 +25,17 @@
    - `superclustering/regression_v1.onnx`: DNN for supercluster energy regression. Input format : `batch x 8 (features)`. Output : `batch x 1` (supercluster regressed energy). Used in `RecoHGCal/TICL/plugins/EGammaSuperclusterProducer.cc`.
 - `ticlv5/onnx_models/`: The models are trained based on TICLv5 reconstruction information using a simple CNN-based approach. Two models have been trained separately: one for trackster energy regression and one for particle ID. These models are saved in ONNX format for time optimization.
 - `Common input tensor`: Both models share the same initial input tensor, dimensions batch x 50 (layers) x 10 (clusters) x 3 (features).
-  - `ticlv5/patternrecognition/id_v*.onnx`:
+  - `ticlv5/DNN/patternrecognition/id_v*.onnx`:
     - `"input"`: Input tensor with dimensions batch x 50 (layers) x 10 (clusters) x 3 (features).
     - `"output/pid_output"`: Output tensor with dimensions batch x 8 representing particle ID probabilities (from a softmax output). The probabilities refer to: photon, electron, muon, neutral pion, charged hadron(pion), neutral hadron(kaon), ambiguous, and unknown cases (in that order). The probabilities help in classifying the particle based on its type, distinguishing between hadronic and electromagnetic categories.
-  - `ticlv5/linking/energy_v*.onnx`:
+  - `ticlv5/DNN/linking/energy_v*.onnx`:
     - `"input"`: Input tensor with dimensions batch x 50 (layers) x 10 (clusters) x 3 (features), concatenated with the output of the particle ID model ("output/pid_output").
     - `"output/enreg_output"`: Output Tensor with dimension batch x 1 (regressed energy). This value represents the trackster energy as estimated by the model based on the training data, compared to the true and reconstructed energies of the particle.
-
+- `Common input tensor`: Both models share the same initial input tensor, dimensions batch x 50 (layers) x 10 (clusters) x 7 (features).
+  - The PFN models are designed to be trained on both low-level variables, such as layer cluster features, and high-level variables, such as trackster features.
+  - `ticlv5/PFN/patternrecognition/id_v*.onnx`:
+    - `"input"`: Input tensor with dimensions batch x 50 (layers) x 10 (clusters) x 7 (features).
+    - `"output/pid_output"`: Output tensor with dimensions batch x 8 representing particle ID probabilities (from a softmax output). The probabilities refer to: photon, electron, muon, neutral pion, charged hadron(pion), neutral hadron(kaon), ambiguous, and unknown cases (in that order). The probabilities help in classifying the particle based on its type, distinguishing between hadronic and electromagnetic categories.
+  - `ticlv5/PFN/linking/energy_v*.onnx`:
+    - `"input"`: Input tensor with dimensions batch x 50 (layers) x 10 (clusters) x 7 (features), concatenated with the output of the particle ID model ("output/pid_output").
+    - `"output/enreg_output"`: Output Tensor with dimension batch x 1 (regressed energy). This value represents the trackster energy as estimated by the model based on the training data, compared to the true and reconstructed energies of the particle.
