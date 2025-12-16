@@ -40,3 +40,7 @@
   - `ticlv5/PFN/linking/energy_v*.onnx`:
     - `"input"`: Input tensor with dimensions batch x 50 (layers) x 10 (clusters) x 7 (features), concatenated with the output of the particle ID model ("output/pid_output").
     - `"output/enreg_output"`: Output Tensor with dimension batch x 1 (regressed energy). This value represents the trackster energy as estimated by the model based on the training data, compared to the true and reconstructed energies of the particle.
+  - `ticlv5/TrackLinking_GNN/*DiskPropGNN_v*.onnx`:
+    - Description: GNN models used to evaluate the linking between tracks and tracksters. The models are trained in PyTorch.
+    - `"input"`: A graph with 13 trackster features, 10 track features, and 11 edge features between track-trackster.
+    - `"output"`: A probability in the range [0, 1]. Values close to 0 indicate that a given trackster does not belong to the track, while values close to 1 indicate that the trackster should be linked to the track.
