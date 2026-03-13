@@ -44,3 +44,7 @@
     - Description: GNN models used to evaluate the linking between tracks and tracksters. The models are trained in PyTorch.
     - `"input"`: A graph with 13 trackster features, 10 track features, and 11 edge features between track-trackster.
     - `"output"`: A probability in the range [0, 1]. Values close to 0 indicate that a given trackster does not belong to the track, while values close to 1 indicate that the trackster should be linked to the track.
+  - `ticlv5/CNN/patternrecognition/id_v*.onnx`:
+    - `v0`: Simple CNN-based approach "the same used in TICLv4". The neutral pion, neutral hadron, ambiguous and unknown probabilities are set to a constant value of 0.  Input and output tensors:
+    - `"input"`: Input tensor with dimension `batch x 50 (layers) x 10 (clusters) x 3 (features)`.
+    - `"pid_output"`: Output tensor with dimension `batch x 8` representing particle ID "probabilities" (from a softmax output). The probabiltities refer to photon, electron, muon, neutral pion, charged hadron, neutral hadron, ambiguous and unknown cases (in that order).
