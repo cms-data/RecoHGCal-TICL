@@ -50,5 +50,5 @@
     - `"pid_output"`: Output tensor with dimension `batch x 8` representing particle ID "probabilities" (from a softmax output). The probabiltities refer to photon, electron, muon, neutral pion, charged hadron, neutral hadron, ambiguous and unknown cases (in that order).
   - `ticlv5/CNN/linking/id_v*.onnx`:
     - `v0`: Simple CNN-based approach "the same used in TICLv4", trained at the ticlCandidate level. The neutral pion, neutral hadron, ambiguous and unknown probabilities are set to a constant value of 0.  Input and output tensors:
-    - `"input"`: Input tensor with dimension `batch x 50 (layers) x 10 (clusters) x 3 (features)`.
-    - `"pid_output"`: Output tensor with dimension `batch x 8` representing particle ID "probabilities" (from a softmax output). The probabiltities refer to photon, electron, muon, neutral pion, charged hadron, neutral hadron, ambiguous and unknown cases (in that order).
+    - `"input"`: Input tensor with dimensions `batch x 50 (layers) x 10 (clusters) x 3 (features)`. For simplicity and to reduce complexity with PFN, we changed the input to match PFN's input format `batch x 50 (layers) x 10 (clusters) x 7 (features)`, while still running the CNN on batch x 50 (layers) x 10 (clusters) x 3 (features).
+     - `"pid_output"`: Output tensor with dimension `batch x 8` representing particle ID "probabilities" (from a softmax output). The probabiltities refer to photon, electron, muon, neutral pion, charged hadron, neutral hadron, ambiguous and unknown cases (in that order).
